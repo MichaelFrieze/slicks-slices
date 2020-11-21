@@ -10,6 +10,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
     // or use source.fixALL if there are problems
+    // learn more about eslint confir: https://github.com/wesbos/eslint-config-wesbos
   },
   // If installed, turn off prettier for JS since we are doing it through Eslint already
   "prettier.disableLanguages": ["javascript", "javascriptreact"]
