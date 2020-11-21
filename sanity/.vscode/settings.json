@@ -8,7 +8,8 @@
   },
   // tell the ESLint plugin to run on save
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll.eslint": true
+    // or use source.fixALL if there are problems
   },
   // If installed, turn off prettier for JS since we are doing it through Eslint already
   "prettier.disableLanguages": ["javascript", "javascriptreact"]
