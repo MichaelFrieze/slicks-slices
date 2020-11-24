@@ -6,7 +6,6 @@ import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 
 export default function Layout({ children }) {
-  console.log(children);
   return (
     <div>
       <GlobalStyles />
