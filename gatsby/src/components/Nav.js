@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import Logo from './Logo';
 
-// notice I didn't nest the li inside the ul.
-// this is because this can cause problems when
-// trying to do things like media queries
 const NavStyles = styled.nav`
   margin-bottom: 3rem;
+
+  .logo {
+    transform: translateY(-25%);
+  }
+
   ul {
     margin: 0;
     padding: 0;
@@ -57,7 +60,9 @@ export default function Nav() {
           <Link to="/pizzas">Pizza Menu</Link>
         </li>
         <li>
-          <Link to="/">LOGO</Link>
+          <Link to="/">
+            <Logo />
+          </Link>
         </li>
         <li>
           <Link to="/slicemasters">SliceMasters</Link>
