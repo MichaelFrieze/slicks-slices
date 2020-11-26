@@ -23,3 +23,13 @@ export default {
     },
   ],
 };
+
+/* 
+Page Queries:
+- can be dynamic with variables
+- can only be run on a top level page
+
+Static Queries:
+- can't be dynamic, no variables can be passed in
+- can be run anywhere
+*/
