@@ -28,20 +28,14 @@ const ToppingsStyles = styled.div`
 `;
 
 function countPizzasInToppings(pizzas) {
-  // Return the pizzas with counts
   const counts = pizzas
-    .map((pizza) => pizza.toppings) // this is an array of arrays
-    .flat() // turns an array of arrays into one big array
+    .map((pizza) => pizza.toppings)
+    .flat()
     .reduce((acc, topping) => {
-      // acc is the accumulator
-      // check if this is an existing topping
       const existingTopping = acc[topping.id];
-      // using id here instead of name incase an emoji or something breaks it
       if (existingTopping) {
-        //  if it is, increment by 1
         existingTopping.count += 1;
       } else {
-        // otherwise create a new entry in our acc and set it to one
         acc[topping.id] = {
           id: topping.id,
           name: topping.name,
@@ -49,8 +43,7 @@ function countPizzasInToppings(pizzas) {
         };
       }
       return acc;
-    }, {}); // The empty object is what we want to start the reduce function with
-  // sort them based on their count
+    }, {});
   const sortedToppings = Object.values(counts).sort(
     (a, b) => b.count - a.count
   );
@@ -58,8 +51,6 @@ function countPizzasInToppings(pizzas) {
 }
 
 export default function ToppingsFilter({ activeTopping }) {
-  // Get a list of all the toppings
-  // Get a list of all the Pizzas with their toppings
   const { toppings, pizzas } = useStaticQuery(graphql`
     query {
       toppings: allSanityTopping {
@@ -80,23 +71,8 @@ export default function ToppingsFilter({ activeTopping }) {
     }
   `);
 
-  // clear the console before console.log()
-  console.clear();
-
-  // can console.log() two things at once
-  // Basically, using a class as a param
-  // {
-  //   toppings: toppings
-  //   pizzas: pizzas
-  // }
-  console.log({ toppings, pizzas });
-
-  // Count how many pizzas are in each topping
   const toppingsWithCounts = countPizzasInToppings(pizzas.nodes);
-  console.log(toppingsWithCounts);
 
-  // Loop over the list of toppings and display the topping and the count of pizzas in that topping
-  // Link it up.. ...  . . .
   return (
     <ToppingsStyles>
       <Link to="/pizzas">
