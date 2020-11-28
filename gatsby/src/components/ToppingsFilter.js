@@ -80,7 +80,7 @@ export default function ToppingsFilter({ activeTopping }) {
   // Count how many pizzas are in each topping
   const toppingsWithCounts = countPizzasInToppings(pizzas.nodes);
   // Loop over the list of toppings and display the topping and the count of pizzas in that topping
-  // Link it up.. ...  . . .
+  // the className for the toppingsWithCounts Link will select active or not active and highlight it
   return (
     <ToppingsStyles>
       <Link to="/pizzas">

@@ -31,33 +31,45 @@ async function turnPizzasIntoPages({ graphql, actions }) {
   });
 }
 
+async function turnToppingsIntoPages({ graphql, actions }) {
+  // 1. Get the template
+  // This is NOT from template dir, this is from pages/pizzas!
+  const toppingTemplate = path.resolve('./src/pages/pizzas.js');
+  // 2. query all the toppings
+  const { data } = await graphql(`
+    query {
+      toppings: allSanityTopping {
+        nodes {
+          name
+          id
+        }
+      }
+    }
+  `);
+  // 3. createPage for that topping
+  data.toppings.nodes.forEach((topping) => {
+    console.log('creating page for topping', topping.name);
+    actions.createPage({
+      path: `topping/${topping.name}`,
+      component: toppingTemplate,
+      context: {
+        topping: topping.name,
+        // TODO Regex for Topping
+        toppingRegex: `/${topping.name}/i`,
+      },
+    });
+  });
+  // 4. Pass topping data to pizza.js
+}
+
 export async function createPages(params) {
   // Create pages dynamically
   // Wait for all promises to be resolved before finishing this function
-  await Promise.all([turnPizzasIntoPages(params)]);
+  await Promise.all([
+    turnPizzasIntoPages(params),
+    turnToppingsIntoPages(params),
+  ]);
   // 1. Pizzas
   // 2. Toppings
   // 3. Slicemasters
 }
-
-/* 
-Gatsby Node APIs
-Gatsby gives plugins and site builders many APIs for controlling your site’s data in the GraphQL data layer.
-https://www.gatsbyjs.com/docs/node-apis/
-
-If your plugin performs async operations (disk I/O, database access, calling remote APIs, etc.) you must either return a promise (explicitly using Promise API or implicitly using async/await syntax) or use the callback passed to the 3rd argument. Gatsby needs to know when plugins are finished as some APIs, to work correctly, require previous APIs to be complete first.
-
-APIs
-createPages
-Tell plugins to add pages. This extension point is called only after the initial sourcing and transformation of nodes plus creation of the GraphQL schema are complete so you can query your data in order to create pages.
-
-So, to understand this, I am using:
-export async function createPages() {
-  console.log('CREATING PAGES!!!!');
-}
-
-First, we can see that it gets data from sanity
-Second, it runs this function: createPages()
-Finally, it builds the page
-
-*/
