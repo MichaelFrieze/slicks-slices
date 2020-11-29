@@ -10,6 +10,7 @@ export default {
     twitter: '@michaelfrieze',
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {
       // this is the name of the plugin you are adding
