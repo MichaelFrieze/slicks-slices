@@ -1,18 +1,12 @@
 import React from 'react';
-
-import 'normalize.css';
 import styled from 'styled-components';
+import 'normalize.css';
+import Nav from './Nav';
+import Footer from './Footer';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 import stripes from '../assets/images/stripes.svg';
 
-import Nav from './Nav';
-import Footer from './Footer';
-
-// added margin before margin-top just
-// in case a browser doesn't support clamp
-// I did the same with padding
-// clam(min, betweenVW ,max)
 const SiteBorderStyles = styled.div`
   max-width: 1000px;
   margin: 12rem auto 4rem auto;
