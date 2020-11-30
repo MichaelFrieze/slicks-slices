@@ -3,10 +3,11 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 
 export default {
+  pathPrefix: '/pizza',
   siteMetadata: {
     title: `Slicks Slices`,
     siteUrl: 'https://michaelfrieze.dev',
-    description: 'The best pizza place in Hamilton!',
+    description: 'The best pizza place in Detroit!',
     twitter: '@michaelfrieze',
   },
   plugins: [
