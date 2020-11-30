@@ -3,12 +3,12 @@ import calculatePizzaPrice from './calculatePizzaPrice';
 
 export default function attachNamesAndPrices(order, pizzas) {
   return order.map((item) => {
-    const pizza = pizzas.find((pizza) => pizza.id === item.id);
+    const singlePizza = pizzas.find((pizza) => pizza.id === item.id);
     return {
       ...item,
-      name: pizza.name,
-      thumbnail: pizza.image.asset.fluid.src,
-      price: formatMoney(calculatePizzaPrice(pizza.price, item.size)),
+      name: singlePizza.name,
+      thumbnail: singlePizza.image.asset.fluid.src,
+      price: formatMoney(calculatePizzaPrice(singlePizza.price, item.size)),
     };
   });
 }
