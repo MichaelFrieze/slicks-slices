@@ -13,7 +13,6 @@ export default {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {
-      // this is the name of the plugin you are adding
       resolve: 'gatsby-source-sanity',
       options: {
         projectId: 'mogfl0cc',
@@ -24,13 +23,3 @@ export default {
     },
   ],
 };
-
-/* 
-Page Queries:
-- can be dynamic with variables
-- can only be run on a top level page
-
-Static Queries:
-- can't be dynamic, no variables can be passed in
-- can be run anywhere
-*/

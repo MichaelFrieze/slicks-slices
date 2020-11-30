@@ -4,7 +4,6 @@ import fetch from 'isomorphic-fetch';
 async function turnPizzasIntoPages({ graphql, actions }) {
   // 1. Get a template for this page
   const pizzaTemplate = path.resolve('./src/templates/Pizza.js');
-
   // 2. Query all pizzas
   const { data } = await graphql(`
     query {
@@ -18,7 +17,6 @@ async function turnPizzasIntoPages({ graphql, actions }) {
       }
     }
   `);
-
   // 3. Loop over each pizza and create a page for that pizza
   data.pizzas.nodes.forEach((pizza) => {
     actions.createPage({
@@ -34,7 +32,6 @@ async function turnPizzasIntoPages({ graphql, actions }) {
 
 async function turnToppingsIntoPages({ graphql, actions }) {
   // 1. Get the template
-  // This is NOT from template dir, this is from pages/pizzas!
   const toppingTemplate = path.resolve('./src/pages/pizzas.js');
   // 2. query all the toppings
   const { data } = await graphql(`
@@ -107,7 +104,6 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
       }
     }
   `);
-  // TODO: 2. Turn each slicemaster into their own page (TODO)
   data.slicemasters.nodes.forEach((slicemaster) => {
     actions.createPage({
       component: resolve('./src/templates/Slicemaster.js'),
@@ -141,7 +137,6 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
   });
 }
 
-// this happens before createPages()
 export async function sourceNodes(params) {
   // fetch a list of beers and source them into our gatsby API!
   await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
@@ -155,7 +150,4 @@ export async function createPages(params) {
     turnToppingsIntoPages(params),
     turnSlicemastersIntoPages(params),
   ]);
-  // 1. Pizzas
-  // 2. Toppings
-  // 3. Slicemasters
 }
