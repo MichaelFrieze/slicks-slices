@@ -40,6 +40,7 @@ function wait(ms = 0) {
 }
 
 exports.handler = async (event, context) => {
+  // await wait(5000); // uncomment to test loading
   const body = JSON.parse(event.body);
   // Check if they have filled out the honeypot
   if (body.mapleSyrup) {

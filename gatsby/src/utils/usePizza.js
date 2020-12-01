@@ -36,6 +36,7 @@ export default function usePizza({ pizzas, values }) {
     // setMessage('Go eat!');
 
     // gather all the data
+    // mapleSyrup is a honeypot btw
     const body = {
       order: attachNamesAndPrices(order, pizzas),
       total: formatMoney(calculateOrderTotal(order, pizzas)),
